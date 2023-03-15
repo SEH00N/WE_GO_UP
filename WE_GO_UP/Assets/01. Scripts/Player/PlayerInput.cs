@@ -19,19 +19,19 @@ public class PlayerInput : MonoBehaviour
     }
 
     // 입력이 x 또는 y 축에 존재할 때 사분면을 통일시키 위해 크거나 작다 또는 작거나 같다로 구분했다
-    private Vector2 DirectionDecision(Vector3 startPos, Vector3 endPos)
+    private Vector3 DirectionDecision(Vector3 startPos, Vector3 endPos)
     {
         Vector3 modifiedValue = endPos - startPos;
-        Vector2 dir = Vector2.zero;
+        Vector3 dir = Vector2.zero;
 
         if(modifiedValue.x >= 0 && modifiedValue.y >= 0)
-            dir = new Vector2(1, 1); // 1사분면
+            dir = Vector3.right; // 1사분면
         else if(modifiedValue.x <= 0 && modifiedValue.y >= 0)
-            dir = new Vector2(-1, 1); //2사분면
-        // else if(modifiedValue.x <= 0 && modifiedValue.y <= 0)
-        //     dir = new Vector2(-1, -1); //3사분면
-        // else if(modifiedValue.x >= 0 && modifiedValue.y <= 0)
-        //     dir = new Vector2(1, -1); //4사분면
+            dir = Vector3.forward; //2사분면
+        else if(modifiedValue.x <= 0 && modifiedValue.y <= 0)
+            dir = Vector3.forward; //3사분면
+        else if(modifiedValue.x >= 0 && modifiedValue.y <= 0)
+            dir = Vector3.right; //4사분면
 
         return dir;
     }
